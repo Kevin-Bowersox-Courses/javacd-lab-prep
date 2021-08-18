@@ -49,10 +49,10 @@ Vagrant.configure("2") do |config|
      vb.memory = "16000"
 	 
 	 # Customize the number of CPU
-	 v.cpus = 6
+	 vb.cpus = 6
 	 
 	 # Video Memory (Important)
-	 v.customize ["modifyvm", :id, "--vram", "90"]
+	 vb.customize ["modifyvm", :id, "--vram", "90"]
 	 
 	 # Clipboard
 	 vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
@@ -60,7 +60,7 @@ Vagrant.configure("2") do |config|
   end
   
   # Install the GUI, VirtualBox Tools
-  config.vm.provision "shell", path: "setup.sh"
+  config.vm.provision "shell", path: "provisioners/setup.sh"
   
   # Position Configuration Files
   config.vm.provision "file", source: "jenkins/admin.groovy", destination: "/home/vagrant/"
