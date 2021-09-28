@@ -23,3 +23,4 @@ runuser -u vagrant -- kubectl apply -f /home/vagrant/ingress.yaml -n argocd
 
 #Write an entry to the hosts file to adjust networking
 sudo sh -c "echo \"$ingress_ip javacd.linkedin.io\" >> /etc/hosts"
+sudo sh -c "echo \"$ingress_ip flagsmith.linkedin.io\" >> /etc/hosts"

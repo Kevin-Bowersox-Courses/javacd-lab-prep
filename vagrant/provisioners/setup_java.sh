@@ -22,21 +22,20 @@ sudo cp -v /home/vagrant/admin.groovy /var/lib/jenkins/init.groovy.d/
 echo "Jenkins Start"
 sudo service jenkins start
 
-sleep 2m
+sleep 1m
 
 #Get the CLI Plugin
 wget http://localhost:8080/jnlpJars/jenkins-cli.jar -P /home/vagrant
 
 
-echo "Grab the password and login"
-JENKINSPWD=$(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
+echo "Setup Jenkins Plugins"
+
 
 #Install Plugins
-java -jar /home/vagrant/jenkins-cli.jar -s http://localhost:8080/ -auth admin:$JENKINSPWD install-plugin $(cat plugins.txt | tr '\n' ' ')
+java -jar /home/vagrant/jenkins-cli.jar -s http://localhost:8080/ -auth admin:admin install-plugin $(cat plugins.txt | tr '\n' ' ')
 
 #Restart Jenkins Service
 echo "Jenkins Restart"
 sudo service jenkins restart
 
-
-
+sleep 1m
