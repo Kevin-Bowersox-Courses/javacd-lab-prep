@@ -1,7 +1,7 @@
 sleep 5
 
 #Connect Kubectl to the Cluster
-runuser -u vagrant -- kubectl config use-context k3d-javacd-lab-cluster-prod
+runuser -u vagrant -- kubectl config use-context k3d-javacd-lab-cluster-staging
 
 #Install Helm
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3

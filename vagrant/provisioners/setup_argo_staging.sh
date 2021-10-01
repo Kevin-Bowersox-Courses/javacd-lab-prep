@@ -1,7 +1,7 @@
 sleep 5
 
 #Connect Kubectl to the Cluster
-runuser -u vagrant -- kubectl config use-context k3d-javacd-lab-cluster-prod
+runuser -u vagrant -- kubectl config use-context k3d-javacd-lab-cluster-staging
 
 #Create the Argo Namespace
 runuser -u vagrant -- kubectl create namespace argocd
@@ -25,5 +25,5 @@ echo "External IP is $ingress_ip"
 runuser -u vagrant -- kubectl apply -f /home/vagrant/ingress.yaml -n argocd
 
 #Write an entry to the hosts file to adjust networking
-sudo sh -c "echo \"$ingress_ip javacd.linkedin.io\" >> /etc/hosts"
-sudo sh -c "echo \"$ingress_ip flagsmith.linkedin.io\" >> /etc/hosts"
+sudo sh -c "echo \"$ingress_ip staging.javacd.linkedin.io\" >> /etc/hosts"
+sudo sh -c "echo \"$ingress_ip staging.flagsmith.linkedin.io\" >> /etc/hosts"

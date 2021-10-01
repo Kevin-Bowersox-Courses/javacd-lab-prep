@@ -86,9 +86,15 @@ Vagrant.configure("2") do |config|
     
   # Install ArgoCd
   config.vm.provision "shell", path: "provisioners/setup_argo.sh"
+  
+  # Install ArgoCd in Staging
+  config.vm.provision "shell", path: "provisioners/setup_argo_staging.sh"
 
-  # Install Helm
+  # Install Flagsmith
   config.vm.provision "shell", path: "provisioners/setup_flagsmith.sh"
+  
+  # Install Flagsmith Staging
+  config.vm.provision "shell", path: "provisioners/setup_flagsmith_staging.sh"
   
   # Create Keys for GitHub
   config.vm.provision "shell", path: "provisioners/setup_ssh.sh"

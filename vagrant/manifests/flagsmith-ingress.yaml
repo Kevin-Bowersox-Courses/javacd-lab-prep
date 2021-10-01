@@ -6,7 +6,7 @@ metadata:
 
 spec:
   rules:
-    - host: flagsmith.linkedin.io
+    - host: "*.flagsmith.linkedin.io"
       http:
         paths:
           - path: /
