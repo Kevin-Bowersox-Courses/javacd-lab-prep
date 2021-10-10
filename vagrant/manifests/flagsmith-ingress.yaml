@@ -23,3 +23,20 @@ spec:
                 name:  flagsmith-api
                 port:
                   number: 8080
+    - host: "flagsmith.linkedin.io"
+      http:
+        paths:
+          - path: /
+            pathType:  Prefix
+            backend:
+              service:
+                name:  flagsmith-frontend
+                port:
+                  number: 8080
+          - path: /api
+            pathType:  Prefix
+            backend:
+              service:
+                name:  flagsmith-api
+                port:
+                  number: 8080

@@ -16,7 +16,4 @@ sudo VBoxClient --seamless
 
 export JENKINS_URL="/var/lib/jenkins"
 
-#Gets rid of error upon start regarding bluetooth
-#sudo "echo 'manual' > /etc/init/bluetooth.override"
-
 
