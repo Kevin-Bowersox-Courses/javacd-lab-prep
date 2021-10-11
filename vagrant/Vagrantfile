@@ -1,13 +1,22 @@
 
 Vagrant.configure("2") do |config|
-
-  config.vm.box = "ubuntu/focal64"
   
+  
+  config.vm.box = "ubuntu/focal64"
+  config.vm.box_version = "20211007.0.0"
+  
+  # set auto_update to false, if you do NOT want to check the correct 
+  # additions version when booting this machine
+  config.vbguest.auto_update = false
+  
+  # do NOT download the iso file from a webserver
+  config.vbguest.no_remote = true
+
    config.vm.provider "virtualbox" do |vb|
-     
-	 vb.name = "javacd-lab"
+   	   
+	 vb.name = "javacd-lab-2021-10-10"
 	 
-	 # Display the VirtualBox GUI when booting the machine
+     # Display the VirtualBox GUI when booting the machine
      vb.gui = true
   
      # Customize the amount of memory on the VM:
@@ -33,9 +42,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "manifests/argocd.yaml", destination: "/home/vagrant/"
   config.vm.provision "file", source: "manifests/ingress.yaml", destination: "/home/vagrant/"
   config.vm.provision "file", source: "manifests/flagsmith-ingress.yaml", destination: "/home/vagrant/"
-  
-  # Install Groovy
-  #config.vm.provision "shell", path: "setup_groovy.sh"
   
   # Install Docker
   config.vm.provision "shell", path: "provisioners/setup_docker.sh"
