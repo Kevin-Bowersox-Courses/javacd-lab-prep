@@ -1,6 +1,4 @@
 #Install Prerequisite Software
-sudo apt-get update
-
 sudo apt-get install \
     apt-transport-https \
     ca-certificates \
@@ -17,7 +15,6 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   
 #Install Docker
-sudo apt-get update
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io
 
 #Post-Install

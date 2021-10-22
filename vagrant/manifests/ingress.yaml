@@ -8,13 +8,13 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: HostRegexp(`javacd.linkedin.io`, `{subhost:[a-z]+}.javacd.linkedin.io`)
+      match: HostRegexp(`argocd.linkedin.io`, `{subhost:[a-z]+}.argocd.linkedin.io`)
       priority: 10
       services:
         - name: argocd-server
           port: 80
     - kind: Rule
-      match: HostRegexp(`javacd.linkedin.io`, `{subhost:[a-z]+}.javacd.linkedin.io`) && Headers(`Content-Type`, `application/grpc`)
+      match: HostRegexp(`argocd.linkedin.io`, `{subhost:[a-z]+}.argocd.linkedin.io`) && Headers(`Content-Type`, `application/grpc`)
       priority: 11
       services:
         - name: argocd-server

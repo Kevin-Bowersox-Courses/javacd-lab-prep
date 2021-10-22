@@ -41,7 +41,6 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "jenkins/plugins.txt", destination: "/home/vagrant/"
   config.vm.provision "file", source: "manifests/argocd.yaml", destination: "/home/vagrant/"
   config.vm.provision "file", source: "manifests/ingress.yaml", destination: "/home/vagrant/"
-  config.vm.provision "file", source: "manifests/flagsmith-ingress.yaml", destination: "/home/vagrant/"
   
   # Install Docker
   config.vm.provision "shell", path: "provisioners/setup_docker.sh"
@@ -57,12 +56,6 @@ Vagrant.configure("2") do |config|
   
   # Install ArgoCd in Staging
   config.vm.provision "shell", path: "provisioners/setup_argo_staging.sh"
-
-  # Install Flagsmith
-  config.vm.provision "shell", path: "provisioners/setup_flagsmith.sh"
-  
-  # Install Flagsmith Staging
-  config.vm.provision "shell", path: "provisioners/setup_flagsmith_staging.sh"
   
   # Create Keys for GitHub
   config.vm.provision "shell", path: "provisioners/setup_ssh.sh"
