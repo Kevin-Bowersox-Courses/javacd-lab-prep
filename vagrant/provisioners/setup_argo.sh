@@ -32,8 +32,16 @@ sudo curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/rele
 sudo chmod +x /usr/local/bin/argocd
 sudo chmod 777 /usr/local/bin/argocd
 
-ARGOPWD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-argocd login javacd.linkedin.io --username admin --password ${ARGOPWD} --insecure
-argocd --server=javacd.linkedin.io --insecure account update-password --account admin --current-password ${ARGOPWD} --new-password admin
-argocd logout javacd.linkedin.io
 
+ARGOPWD=""
+while [ -z "$ARGOPWD" ]; do
+	
+	sleep 15
+	ARGOPWD=$(runuser -u vagrant -- kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+	echo "Fetching ArgoCD password"
+	
+done
+
+
+argocd login argocd.linkedin.io --username admin --password ${ARGOPWD} --insecure
+argocd --server=argocd.linkedin.io --insecure account update-password --account admin --current-password ${ARGOPWD} --new-password admin

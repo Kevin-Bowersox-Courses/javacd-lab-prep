@@ -20,7 +20,6 @@ github-api:latest
 github-branch-source:latest
 github-issues:latest
 github-oauth:latest
-github-organization-folder:latest
 github-pullrequest:latest
 github-pr-coverage-status:latest
 javadoc:latest
@@ -33,7 +32,6 @@ pipeline-graph-analysis:latest
 pipeline-input-step:latest
 pipeline-milestone-step:latest
 pipeline-model-api:1.0.2
-pipeline-model-declarative-agent:1.0.2
 pipeline-model-definition:1.0.2
 pipeline-githubnotify-step:latest
 pipeline-github-lib:latest

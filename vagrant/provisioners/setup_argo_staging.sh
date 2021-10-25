@@ -28,13 +28,15 @@ runuser -u vagrant -- kubectl apply -f /home/vagrant/ingress.yaml -n argocd
 sudo sh -c "echo \"$ingress_ip staging.argocd.linkedin.io\" >> /etc/hosts"
 sudo sh -c "echo \"$ingress_ip staging.landon.linkedin.io\" >> /etc/hosts"
 
-ARGOPWD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-argocd login javacd.linkedin.io --username admin --password ${ARGOPWD} --insecure
-argocd --server=javacd.linkedin.io --insecure account update-password --account admin --current-password ${ARGOPWD} --new-password admin
-argocd logout javacd.linkedin.io
+STGARGOPWD=""
+while [ -z "$STGARGOPWD" ]; do
+	
+	sleep 15
+	STGARGOPWD=$(runuser -u vagrant -- kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+	echo "Fetching ArgoCD password"
+	
+done
 
-ARGOPWD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-argocd login staging.javacd.linkedin.io --username admin --password ${ARGOPWD} --insecure
-argocd --server=staging.javacd.linkedin.io --insecure account update-password --account admin --current-password ${ARGOPWD} --new-password admin
-argocd logout staging.javacd.linkedin.io
+argocd login staging.argocd.linkedin.io --username admin --password ${STGARGOPWD} --insecure
+argocd --server=staging.argocd.linkedin.io --insecure account update-password --account admin --current-password ${STGARGOPWD} --new-password admin
 
